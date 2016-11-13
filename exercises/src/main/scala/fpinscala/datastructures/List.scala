@@ -107,6 +107,7 @@ object TestList {
     println(mkString(drop(List(1, 2, 3, 4, 5), 2)))
     println(mkString(dropWhile[Int](List(1, 2, 3, 4, 5), _ < 4)))
     println(mkString(init(List(1, 2, 3, 4, 5))))
+    println(mkString(foldRight(List(1,2,3), Nil:List[Int])(Cons(_,_))))
 
   }
 }
