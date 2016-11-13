@@ -89,6 +89,15 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Cons(head, tail) => foldLeft(tail, f(z, head))(f)
   }
 
+  def sumFoldLeft(ns: List[Int]) =
+    foldLeft(ns, 0)(_ + _)
+
+  def productFoldLeft(ns: List[Double]) =
+    foldLeft(ns, 1.0)(_ * _)
+
+  def lengthFoldLeft[A](l: List[A]): Int =
+    foldLeft(l, 0)((acc, _) => acc + 1)
+
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 
   def mkString[A](l: List[A]): String = {
@@ -116,5 +125,8 @@ object TestList {
     println(mkString(foldRight(List(1,2,3), Nil:List[Int])(Cons(_,_))))
     println(length(List(1, 2, 3, 4, 5)))
     println(foldLeft(List(1, 2, 3, 4, 5), "0")((b, acc) => s"$acc, $b"))
+    println(sumFoldLeft(List(1, 2, 3, 4, 5)))
+    println(productFoldLeft(List(1, 2, 3, 4, 5)))
+    println(lengthFoldLeft(List(1, 2, 3, 4, 5)))
   }
 }
