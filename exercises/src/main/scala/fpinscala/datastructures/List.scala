@@ -55,7 +55,10 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Cons(_, xs) => xs
   }
 
-  def setHead[A](l: List[A], h: A): List[A] = sys.error("todo")
+  def setHead[A](l: List[A], newHead: A): List[A] = l match {
+    case Nil => Nil
+    case Cons(head, tail) => Cons(newHead, tail)
+  }
 
   def drop[A](l: List[A], n: Int): List[A] = sys.error("todo")
 
@@ -87,5 +90,6 @@ object TestList {
     println(matchResult)
 
     println(mkString(tail(List(1, 2, 3, 4, 5))))
+    println(mkString(setHead(List(1, 2, 3, 4, 5), 6)))
   }
 }
