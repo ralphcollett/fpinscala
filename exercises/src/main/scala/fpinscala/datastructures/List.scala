@@ -60,7 +60,12 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Cons(head, tail) => Cons(newHead, tail)
   }
 
-  def drop[A](l: List[A], n: Int): List[A] = sys.error("todo")
+  def drop[A](l: List[A], n: Int): List[A] = {
+    if (n < 1) l else l match {
+      case Nil => Nil
+      case Cons(head, tail) => drop(tail, n - 1)
+    }
+  }
 
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = sys.error("todo")
 
@@ -91,5 +96,6 @@ object TestList {
 
     println(mkString(tail(List(1, 2, 3, 4, 5))))
     println(mkString(setHead(List(1, 2, 3, 4, 5), 6)))
+    println(mkString(drop(List(1, 2, 3, 4, 5), 2)))
   }
 }
