@@ -98,6 +98,9 @@ object List { // `List` companion object. Contains functions for creating and wo
   def lengthFoldLeft[A](l: List[A]): Int =
     foldLeft(l, 0)((acc, _) => acc + 1)
 
+  def reverse[A](l: List[A]): List[A] =
+    foldLeft(l, Nil: List[A])((acc, b) => Cons(b, acc))
+
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 
   def mkString[A](l: List[A]): String = {
@@ -128,5 +131,6 @@ object TestList {
     println(sumFoldLeft(List(1, 2, 3, 4, 5)))
     println(productFoldLeft(List(1, 2, 3, 4, 5)))
     println(lengthFoldLeft(List(1, 2, 3, 4, 5)))
+    println(mkString(reverse(List(1, 2, 3, 4, 5))))
   }
 }
