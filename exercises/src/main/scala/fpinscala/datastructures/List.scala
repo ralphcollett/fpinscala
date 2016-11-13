@@ -67,7 +67,11 @@ object List { // `List` companion object. Contains functions for creating and wo
     }
   }
 
-  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = sys.error("todo")
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Nil => Nil
+    case Cons(head, tail) if f(head) => dropWhile(tail, f)
+    case ll => ll
+  }
 
   def init[A](l: List[A]): List[A] = sys.error("todo")
 
@@ -97,5 +101,6 @@ object TestList {
     println(mkString(tail(List(1, 2, 3, 4, 5))))
     println(mkString(setHead(List(1, 2, 3, 4, 5), 6)))
     println(mkString(drop(List(1, 2, 3, 4, 5), 2)))
+    println(mkString(dropWhile[Int](List(1, 2, 3, 4, 5), _ < 4)))
   }
 }
