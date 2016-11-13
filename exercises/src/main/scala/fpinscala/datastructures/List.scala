@@ -66,3 +66,12 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }
+
+object TestList {
+
+  import List._
+
+  def main(args: Array[String]): Unit = {
+    println(x)
+  }
+}
