@@ -79,7 +79,7 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Cons(h, tail) => Cons(h, init(tail))
   }
 
-  def length[A](l: List[A]): Int = sys.error("todo")
+  def length[A](l: List[A]): Int = foldRight(l, 0)((_, acc) => acc + 1)
 
   def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = sys.error("todo")
 
@@ -108,6 +108,7 @@ object TestList {
     println(mkString(dropWhile[Int](List(1, 2, 3, 4, 5), _ < 4)))
     println(mkString(init(List(1, 2, 3, 4, 5))))
     println(mkString(foldRight(List(1,2,3), Nil:List[Int])(Cons(_,_))))
+    println(length(List(1, 2, 3, 4, 5)))
 
   }
 }
