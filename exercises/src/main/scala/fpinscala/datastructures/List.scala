@@ -73,7 +73,11 @@ object List { // `List` companion object. Contains functions for creating and wo
     case ll => ll
   }
 
-  def init[A](l: List[A]): List[A] = sys.error("todo")
+  def init[A](l: List[A]): List[A] = l match {
+    case Nil => Nil
+    case Cons(h, Nil) => Nil
+    case Cons(h, tail) => Cons(h, init(tail))
+  }
 
   def length[A](l: List[A]): Int = sys.error("todo")
 
@@ -102,5 +106,7 @@ object TestList {
     println(mkString(setHead(List(1, 2, 3, 4, 5), 6)))
     println(mkString(drop(List(1, 2, 3, 4, 5), 2)))
     println(mkString(dropWhile[Int](List(1, 2, 3, 4, 5), _ < 4)))
+    println(mkString(init(List(1, 2, 3, 4, 5))))
+
   }
 }
